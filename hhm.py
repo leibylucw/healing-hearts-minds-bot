@@ -2,6 +2,9 @@ import os
 
 import discord
 import dotenv
+import requests
+
+DAD_JOKE_HEADERS = {'Accept': 'text/plain'}
 
 dotenv.load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -20,7 +23,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+    if message.content.lower() == '$dadjoke':
+        await message.channel.send(requests.get('https://icanhazdadjoke.com/', headers=DAD_JOKE_HEADERS).text)
 
 client.run(token)
