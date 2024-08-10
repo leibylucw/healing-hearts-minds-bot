@@ -4,8 +4,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
     image: healing-hearts-minds-bot
-    container_name: healing-hearts-minds-bot
-    hostname: healing-hearts-minds-bot
+    container_name: hhmBot
+    hostname: hhmBot
     entrypoint: /usr/local/bin/entrypoint.sh
     env_file: ./.env
     tty: true

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python /code/src/healingHeartsMindsBot/hhm.py
+python /code/src/hhmBot/hhm.py
