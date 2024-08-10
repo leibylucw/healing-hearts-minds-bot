@@ -5,11 +5,11 @@ FROM python:3.12-alpine
 WORKDIR /code
 
 # Copy project files
-COPY src .
-COPY requirements.txt .
+COPY src src
+COPY requirements.txt requirements.txt
 
 # Copy entrypoint script
-COPY entrypoint.sh /usr/local/bin
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Install project dependencies
 RUN pip install -r requirements.txt
