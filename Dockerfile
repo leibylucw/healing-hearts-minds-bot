@@ -4,18 +4,12 @@ FROM python:3.12-alpine
 # Set the working directory
 WORKDIR /code
 
-# Copy project files
+# Set up project
 COPY src src
 COPY requirements.txt requirements.txt
-
-# Copy entrypoint script
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-
-# Install project dependencies
 RUN pip install -r requirements.txt
 
-# Set entrypoint script permissions
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
 # Set the entrypoint
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
