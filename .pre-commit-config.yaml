@@ -25,4 +25,4 @@ repos:
     rev: v1.6.0
     hooks:
       - id: vermin
-        args: ['--no-parse-comments', '--target=3.11-', '--lint', '--violations']
+        args: ['--no-parse-comments', '--target=3.12-', '--lint', '--violations']
