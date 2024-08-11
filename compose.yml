@@ -1,5 +1,5 @@
 services:
-  web:
+  discord:
     build:
       context: .
       dockerfile: ./Dockerfile
