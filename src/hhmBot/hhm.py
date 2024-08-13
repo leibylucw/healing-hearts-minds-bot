@@ -33,9 +33,15 @@ async def on_ready():
 
 @client.tree.command(name='dadjoke', description='Get a funny dad joke!')
 async def dadJoke(interaction):
-	await interaction.response.send_message(
-		requests.get('https://icanhazdadjoke.com', headers={'Accept': 'text/plain'}).text, ephemeral=True
-	)
+	try:
+		response = requests.get('https://icanhazdadjoke.com', headers={'Accept': 'text/plain'})
+		response.raise_for_status()
+		joke = response.content.decode('utf-8')
+	except requests.RequestException as e:
+		joke = 'Failed to fetch a dad joke due to an error.'
+		print(f'Error fetching dad joke: {e}')
+
+	await interaction.response.send_message(joke, ephemeral=True)
 
 
 client.run(os.getenv('DISCORD_TOKEN'))
