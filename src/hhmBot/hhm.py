@@ -44,6 +44,19 @@ async def dadJoke(interaction):
 	await interaction.response.send_message(joke, ephemeral=True)
 
 
+@client.tree.command(name='uselessfact', description='Get a random, useless fact!')
+async def uselessFact(interaction):
+	try:
+		response = requests.get('https://uselessfacts.jsph.pl/api/v2/facts/random', params={'language': 'en'})
+		response.raise_for_status()
+		fact = response.json()['text']
+	except requests.RequestException as e:
+		fact = 'Failed to fetch a useless fact due to an error.'
+		print(f'Error fetching useless fact: {e}')
+
+	await interaction.response.send_message(fact, ephemeral=True)
+
+
 @client.tree.context_menu(name='Report to HHM Mods')
 async def reportToHHMMods(interaction: discord.Interaction, message: discord.Message):
 	await interaction.response.send_message(
