@@ -14,7 +14,7 @@ intents.message_content = True
 
 
 class HHMBotClient(discord.Client):
-	def __init__(self, *, intents):
+	def __init__(self, *, intents: discord.Intents):
 		super().__init__(intents=intents)
 		self.tree = app_commands.CommandTree(self)
 
@@ -32,7 +32,7 @@ async def on_ready():
 
 
 @client.tree.command(name='dadjoke', description='Get a funny dad joke!')
-async def dadJoke(interaction):
+async def dadJoke(interaction: discord.Interaction):
 	try:
 		response = requests.get('https://icanhazdadjoke.com', headers={'Accept': 'text/plain'})
 		response.raise_for_status()
@@ -45,7 +45,7 @@ async def dadJoke(interaction):
 
 
 @client.tree.command(name='uselessfact', description='Get a random, useless fact!')
-async def uselessFact(interaction):
+async def uselessFact(interaction: discord.Interaction):
 	try:
 		response = requests.get('https://uselessfacts.jsph.pl/api/v2/facts/random', params={'language': 'en'})
 		response.raise_for_status()
